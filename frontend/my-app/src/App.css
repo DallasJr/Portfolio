@@ -1,3 +1,5 @@
+*{background-color: #0d1117;}
+
 .App {
   text-align: center;
 }
@@ -14,8 +16,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +36,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.menu-container {
+  width: 100%; 
+  background-color: #3b5987;
+  display: flex; 
+  justify-content: center;
+  padding: 5px 0;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  
+}
+
+.menu {
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+  display: flex; 
+}
+
+.menu li {
+  padding: 20px 50px; 
+}
+
+.menu li a {
+  text-decoration: none; 
+}
+
+
+.body {
+  padding-top: 5px;
+  color: white;
 }
