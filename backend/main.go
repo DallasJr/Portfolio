@@ -17,10 +17,6 @@ func main() {
 	// Démarrer le routeur et lier les routes
 	router := routes.SetupRouter()
 
-	// Démarrer le serveur sur le port 8080
-	log.Println("Server running on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
-
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 
 	if err != nil {
@@ -49,5 +45,9 @@ func main() {
 	}
 
 	fmt.Println(namesOfMovies.InsertedID)
+
+	// Démarrer le serveur sur le port 8080
+	log.Println("Server running on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", router))
 
 }
