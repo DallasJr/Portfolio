@@ -2,26 +2,42 @@ package config
 
 import (
 	"context"
+	"fmt"
+	"log"
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
 )
 
-var DB *mongo.Database
-
-func ConnectDB() {
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(context.Background(), clientOptions)
+func main() {
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = client.Ping(context.Background(), nil)
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	err = client.Connect(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	DB = client.Database("portfolio")
-	log.Println("Connected to MongoDB")
+	defer client.Disconnect(ctx)
+
+	moviesDatabase := client.Database("movies")
+	namesCollection := moviesDatabase.Collection("names")
+
+	// Utiliser bson.D pour créer un document BSON
+	namesOfMovies, err := namesCollection.InsertOne(ctx, bson.D{
+		{Key: "name", Value: "jkghfv"},
+		{Key: "title", Value: "lzkesghvjn"},
+	})
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println(namesOfMovies.InsertedID)
 }
