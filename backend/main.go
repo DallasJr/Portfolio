@@ -1,28 +1,16 @@
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
+	"github.com/gin-gonic/gin"
+	"portfolio/config"
 	"portfolio/routes"
 )
 
 func main() {
-	// Connect to MongoDB
-	routes.ConnectDB()
-	defer func() {
-		if err := routes.Client.Disconnect(context.TODO()); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	r := gin.Default()
 
-	// Register handler for /movies
-	http.HandleFunc("/movies", routes.GetMovies)
+	config.ConnectDatabase()
+	routes.PortfolioRoutes(r)
 
-	// Start the server
-	log.Println("Starting server on :8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
-	}
-
+	r.Run(":8080") // Start server on port 8080
 }
