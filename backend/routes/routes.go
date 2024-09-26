@@ -6,14 +6,19 @@ import (
 )
 
 func SetupRoutes() *gin.Engine {
-	r := gin.Default()
+	router := gin.Default()
+	router.GET("/portfolio", controllers.GetPortfolio)
+	router.POST("/portfolio", controllers.CreatePortfolio)
+	router.PUT("/portfolio", controllers.UpdatePortfolio)
 
-	// Portfolio Routes
-	r.POST("/portfolios", controllers.CreatePortfolio)
-	r.GET("/portfolios", controllers.GetPortfolios)
-	r.GET("/portfolios/:id", controllers.GetPortfolioByID)
-	r.PUT("/portfolios/:id", controllers.UpdatePortfolio)
-	r.DELETE("/portfolios/:id", controllers.DeletePortfolio)
+	router.GET("/made-movies", controllers.GetMadeMovies)
+	router.POST("/made-movies", controllers.CreateMadeMovie)
+	router.PUT("/made-movies/:id", controllers.UpdateMadeMovie)
+	router.DELETE("/made-movies/:id", controllers.DeleteMadeMovie)
 
-	return r
+	router.GET("/played-movies", controllers.GetPlayedMovies)
+	router.POST("/played-movies", controllers.CreatePlayedMovie)
+	router.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
+	router.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
+	return router
 }

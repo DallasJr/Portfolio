@@ -8,5 +8,8 @@ import (
 func main() {
 	config.ConnectDatabase()
 	r := routes.SetupRoutes()
-	r.Run(":8080")
+	err := r.Run(":8080")
+	if err != nil {
+		return
+	}
 }
