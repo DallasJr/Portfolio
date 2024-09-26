@@ -13,7 +13,7 @@ type Portfolio struct {
 	Description string `json:"description" validate:"required"`
 	Picture     string `json:"picture" validate:"required"`
 }
-
+ 
 // MadeMovie model
 type MadeMovie struct {
 	gorm.Model
