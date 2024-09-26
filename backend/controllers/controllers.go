@@ -39,6 +39,21 @@ func InitializeAdmin(db *gorm.DB) {
 		}
 		db.Create(&admin)
 	}
+
+	fmt.Println("Creating portfolio")
+	var portfolio models.Portfolio
+	db.First(&portfolio)
+	if portfolio.Name == "" {
+		portfolio = models.Portfolio{
+			Name:        "Name Surname",
+			Country:     "France",
+			Age:         20,
+			Description: "This is a default portfolio created on startup.",
+			Picture:     "default_picture.jpg",
+		}
+		db.Create(&portfolio)
+		fmt.Println("Default portfolio created.")
+	}
 }
 
 func AdminLogin(c *gin.Context) {
@@ -91,19 +106,5 @@ func UpdatePortfolio(c *gin.Context) {
 		return
 	}
 	config.DB.Save(&portfolio)
-	c.JSON(http.StatusOK, portfolio)
-}
-
-func CreatePortfolio(c *gin.Context) {
-	var portfolio models.Portfolio
-	if err := c.ShouldBindJSON(&portfolio); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	if err := validate.Struct(portfolio); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	config.DB.Create(&portfolio)
 	c.JSON(http.StatusOK, portfolio)
 }
