@@ -4,6 +4,12 @@ import (
 	"gorm.io/gorm"
 )
 
+type Admin struct {
+	gorm.Model
+	Username string `json:"username" validate:"required,min=2,max=100"`
+	Password string `json:"password" validate:"required"`
+}
+
 type Portfolio struct {
 	gorm.Model
 	Name        string `json:"name" validate:"required,min=2,max=100"`

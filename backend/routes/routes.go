@@ -1,12 +1,24 @@
 package routes
 
 import (
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"portfolio/controllers"
+	"portfolio/middleware"
 )
 
 func SetupRoutes() *gin.Engine {
 	router := gin.Default()
+
+	store := cookie.NewStore([]byte("secret"))
+	router.Use(sessions.Sessions("mysession", store))
+
+	router.POST("/login", controllers.AdminLogin)
+	router.POST("/logout", controllers.AdminLogout)
+	admin := router.Group("/admin")
+	admin.Use(middleware.AuthRequired())
+
 	router.GET("/portfolio", controllers.GetPortfolio)
 	router.POST("/portfolio", controllers.CreatePortfolio)
 	router.PUT("/portfolio", controllers.UpdatePortfolio)
