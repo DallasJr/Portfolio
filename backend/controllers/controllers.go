@@ -44,24 +44,19 @@ func InitializeAdmin(db *gorm.DB) {
 func AdminLogin(c *gin.Context) {
 	var input models.Admin
 	var admin models.Admin
-
 	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input", "details": err.Error()})
 		return
 	}
-
 	db := c.MustGet("db").(*gorm.DB)
 	db.First(&admin)
-
 	if admin.Username != input.Username || !CheckPasswordHash(input.Password, admin.Password) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Incorrect username or password"})
 		return
 	}
-
 	session := sessions.Default(c)
 	session.Set("admin", admin.Username)
 	session.Save()
-
 	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
 }
 

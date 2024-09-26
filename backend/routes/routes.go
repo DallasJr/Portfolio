@@ -4,6 +4,8 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+	"portfolio/config"
 	"portfolio/controllers"
 	"portfolio/middleware"
 )
@@ -14,6 +16,8 @@ func SetupRoutes() *gin.Engine {
 	store := cookie.NewStore([]byte("secret"))
 	router.Use(sessions.Sessions("mysession", store))
 
+	// Add DB middleware here
+	router.Use(DBMiddleware(config.DB))
 	router.POST("/login", controllers.AdminLogin)
 	router.POST("/logout", controllers.AdminLogout)
 	admin := router.Group("/admin")
@@ -33,4 +37,11 @@ func SetupRoutes() *gin.Engine {
 	router.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
 	router.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
 	return router
+}
+
+func DBMiddleware(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	}
 }
