@@ -16,8 +16,12 @@ function App() {
         </form>
       </header>
       <div class="body">
-        <img src="/omarTourne.png" class="App-logo" alt="omar si" />
-        <h1>OMAR SI</h1>
+        <img src="/omarSY.png" class="App-logo" alt="omar si" />
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h1>OMAR SY</h1>
       </div>
     </div>
   );
