@@ -35,28 +35,33 @@ function AppContent() {
                 </div>
             </form>
             <div className="Description">
-                <div className="">
+                <div className="box">
+                    <p className="texte">
+                        Who is Omar Sy?
+                        <br></br>
+                        OMAR SY is a distinguished French actor, film producer, director, screenwriter, and comedian.
+                        He was born on January 20, 1988, in Trappes, France. Omar Sy is widely recognized in France for
+                        his comedic sketches with Fred Testot on the television show Service après-vente des émissions
+                        on
+                        Canal+
+                        (2005–2012).
+                        <br></br>
+                        In 2012, he was awarded the César for Best Actor for his performance in the film Intouchables.
+                        This success notably opened the doors to Hollywood, where he went on to star in several American
+                        blockbusters.
+                        Despite his remarkable career, Omar Sy has been subjected to harassment due to his name. He has
+                        been
+                        the
+                        target of wordplay
+                        and photo montages, which are in poor taste and far from humorous.
+                    </p>
+                    <img src="/omarscie.png" className="omarscie" />
+                </div>
+                <div className="omarsy">
                     <img src="/omarSY.png" className="App-logo" alt="omar si"/>
                     <br/>
-                    <h1>OMAR SY</h1>
+                    <h1 className="nom">OMAR SY</h1>
                 </div>
-                <p>
-                    Who is Omar Sy?
-                    <br></br>
-                    OMAR SY is a distinguished French actor, film producer, director, screenwriter, and comedian.
-                    He was born on January 20, 1988, in Trappes, France. Omar Sy is widely recognized in France for
-                    his comedic sketches with Fred Testot on the television show Service après-vente des émissions on
-                    Canal+
-                    (2005–2012).
-                    <br></br>
-                    In 2012, he was awarded the César for Best Actor for his performance in the film Intouchables.
-                    This success notably opened the doors to Hollywood, where he went on to star in several American
-                    blockbusters.
-                    Despite his remarkable career, Omar Sy has been subjected to harassment due to his name. He has been
-                    the
-                    target of wordplay
-                    and photo montages, which are in poor taste and far from humorous.
-                </p>
             </div>
         </div>
     );

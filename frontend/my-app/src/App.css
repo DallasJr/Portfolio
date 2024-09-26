@@ -65,7 +65,29 @@
   color: white;
 }
 
-/*.description {*/
-/*  display: grid;*/
-/*  grid-template-columns: 1fr 1fr;*/
-/*}*/
+.Description {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+p {
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.box {
+  font-family: "Calibri", serif;
+  font-size: large;
+  border-radius: 10px;
+  background-color: rgba(25, 118, 210, 0.76);
+  padding: 10px;
+}
+
+.omarscie {
+  height: 100px;
+}
+
+.omarsy {
+  margin-top: 50px;
+}
