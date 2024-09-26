@@ -1,22 +1,27 @@
 package config
 
 import (
-	"database/sql"
 	"fmt"
-	_ "github.com/mattn/go-sqlite3"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	"log"
+	"portfolio/models"
 )
 
-var DB *sql.DB
+var DB *gorm.DB
 
 func ConnectDatabase() {
 	var err error
-	DB, err = sql.Open("sqlite3", "data.db")
+	DB, err = gorm.Open(sqlite.Open("portfolio.db"), &gorm.Config{})
 	if err != nil {
-		panic(fmt.Sprintf("Failed to connect to database: %v", err))
+		log.Fatal("Failed to connect to the database!")
 	}
+	log.Println("Database connected successfully.")
 
+	// Migrate the schema
+	DB.AutoMigrate(&models.Portfolio{}, &models.MadeMovie{}, &models.PlayedMovie{})
 	// Ping the DB
-	if err = DB.Ping(); err != nil {
+	/*if err = DB.Ping(); err != nil {
 		panic(fmt.Sprintf("Failed to ping the database: %v", err))
 	}
 
@@ -35,10 +40,15 @@ func ConnectDatabase() {
 		panic(fmt.Sprintf("Failed to create played movies table: %v", err))
 	}
 
+	err = insertPortfolio()
+	if err != nil {
+		panic(fmt.Sprintf("Failed to insert portfolio: %v", err))
+	}*/
+
 	fmt.Println("Database connection successful.")
 }
 
-func createPlayedMoviesTable() (sql.Result, error) {
+/*func createPlayedMoviesTable() (sql.Result, error) {
 	sqlStmt := `
     CREATE TABLE IF NOT EXISTS playedMovies (
         title TEXT PRIMARY KEY,
@@ -73,3 +83,12 @@ func createPortfolioTable() (sql.Result, error) {
     `
 	return DB.Exec(sqlStmt)
 }
+
+func insertPortfolio() error {
+	sqlStmt := `INSERT INTO portfolios (name, country, age, description)
+	VALUES ('je ne sais', 'france', 19, 'acteur');
+	`
+	_, err := DB.Exec(sqlStmt)
+	return err
+}
+*/

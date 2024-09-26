@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="data" uuid="82b11ca6-9613-4d21-ac20-16a763bb61d5">
+    <data-source source="LOCAL" name="portfolio" uuid="0330b008-93c5-4514-b849-fb54716ff089">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\dalla\GolandProjects\Portfolio\backend\data.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\dalla\GolandProjects\Portfolio\backend\portfolio.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
