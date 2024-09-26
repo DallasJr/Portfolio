@@ -1,4 +1,3 @@
-*{background-color: #0d1117;}
 
 .App {
   text-align: center;
@@ -25,10 +24,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -39,34 +34,38 @@
 }
 
 .menu-container {
-  width: 100%; 
+  width: 100%;
   background-color: #0d1117;
-  display: flex; 
+  display: flex;
   justify-content: center;
   padding: 5px 0;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
+  position: fixed;
+  top: 0;
+  left: 0;
   
 }
 
 .menu {
-  list-style-type: none; 
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex; 
+  display: flex;
 }
 
 .menu li {
-  padding: 20px 50px; 
+  padding: 20px 50px;
 }
 
 .menu li a {
   text-decoration: none; 
 }
 
-
 .body {
   padding-top: 5px;
   color: white;
 }
+
+/*.description {*/
+/*  display: grid;*/
+/*  grid-template-columns: 1fr 1fr;*/
+/*}*/
