@@ -31,7 +31,7 @@ func UpdatePlayedMovie(c *gin.Context) {
 	var playedMovie models.PlayedMovie
 	id := c.Param("id")
 	if err := config.DB.First(&playedMovie, id).Error; err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Movie not found"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "Unknown movie"})
 		return
 	}
 	if err := c.ShouldBindJSON(&playedMovie); err != nil {
@@ -50,7 +50,7 @@ func DeletePlayedMovie(c *gin.Context) {
 	var playedMovie models.PlayedMovie
 	id := c.Param("id")
 	if err := config.DB.First(&playedMovie, id).Error; err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Movie not found"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "Unknown movie"})
 		return
 	}
 	config.DB.Delete(&playedMovie)
