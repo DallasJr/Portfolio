@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import OmarSy from './OmarSy.png';
 import React, { useEffect, useState } from 'react';
 import { getMadeMovies } from './Axios';
-import { Button } from "@mui/material";
+import ResponsiveAppBar from './components/ResponsiveAppBar';
 
 function FilmographieContent() {
     const navigate = useNavigate();
@@ -30,27 +30,7 @@ function FilmographieContent() {
 
     return (
         <div className="container">
-            <form>
-                <div className="menu-container">
-                    <ul className="menu">
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/')} className="App-link">
-                                Accueil
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/FilmographieAct')} className="App-link">
-                                Voir la Filmographie (Acteur)
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/Admin')} className="App-link">
-                                Admin
-                            </Button>
-                        </li>
-                    </ul>
-                </div>
-            </form>
+            <ResponsiveAppBar />             
             <header className="header">
                 <div className="profile"></div>
                 <div className="intro">
@@ -71,18 +51,12 @@ function FilmographieContent() {
                                 <h2>{movie.title}</h2>
                                 <p>{movie.description}</p>
                                 <p>Released: {movie.releaseDate}</p>
-                                <img 
-                                    src={movie.image || 'default_image_url.png'} 
-                                    alt={movie.title} 
-                                    onError={(e) => e.target.src = 'default_image_url.png'}
-                                />
                             </li>
                         ))}
                     </ul>
                 ) : (
                     !loading && <p>No movies found.</p>
                 )}
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet vulputate tristique quam felis. Id phasellus dui orci vulputate consequat nulla prain.</p>
             </section>
         </div>
     );

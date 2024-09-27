@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import OmarSy from './OmarSy.png';
 import React, { useEffect, useState } from 'react';
 import { getActedMovies } from './Axios';
-import { Button } from "@mui/material";
+import ResponsiveAppBar from './components/ResponsiveAppBar';
 
 function FilmographieContent() {
     const navigate = useNavigate();
@@ -30,27 +30,8 @@ function FilmographieContent() {
 
     return (
         <div className="container">
-            <form>
-                <div className="menu-container">
-                    <ul className="menu">
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/')} className="App-link">
-                                Accueil
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/FilmographieRea')} className="App-link">
-                                Voir la Filmographie (Réalisateur)
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/Admin')} className="App-link">
-                                Admin
-                            </Button>
-                        </li>
-                    </ul>
-                </div>
-            </form>
+            <ResponsiveAppBar /> 
+
             <header className="header">
                 <div className="profile"></div>
                 <div className="intro">

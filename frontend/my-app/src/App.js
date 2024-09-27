@@ -6,35 +6,14 @@ import FilmographieRea from './FilmographieRea';
 import Admin from './Admin';
 import {Button} from "@mui/material";
 import Login from "./Login";
+import ResponsiveAppBar from './components/ResponsiveAppBar';
 
 function AppContent() {
     const navigate = useNavigate();
 
     return (
         <div className="App">
-            <form>
-                <div className="menu-container">
-                    <ul className="menu">
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/FilmographieAct')}
-                                    className="App-link">
-                                Voir la Filmographie (Acteur)
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/FilmographieRea')}
-                                    className="App-link">
-                                Voir la Filmographie (Réalisateur)
-                            </Button>
-                        </li>
-                        <li>
-                            <Button variant="outlined" onClick={() => navigate('/Admin')} className="App-link">
-                                Admin
-                            </Button>
-                        </li>
-                    </ul>
-                </div>
-            </form>
+            <ResponsiveAppBar />
             <div className="Description">
                 <div className="box">
                     <p className="texte">
