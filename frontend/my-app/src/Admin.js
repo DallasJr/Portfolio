@@ -1,24 +1,40 @@
-import './FilmographieAct.css';
 import OmarSy from './OmarSy.png';
+import {Button, Input} from "@mui/material";
+
 
 function Filmographie() {
     return (
-        <div class="container">
-        <header class="header">
-            <div class="profile">
-            </div>
-            <div class="intro">
-                <h2>Name</h2>
-                <h2>Name</h2>
-            </div>
-            <img src={OmarSy} className="Omar-img" alt="logo" />
-        </header>
+        <section className="section">
+            <div className="container">
+                <header className="header">
+                    <div className="profile">
+                        <h5>Username</h5><Input type="text"/>
+                        <h5>Password</h5><Input type="text"/>
+                        <h5>Confirm password</h5><Input type="text"/>
+                    </div>
 
-        <section class="about">
-            <h3>Actor Filmography</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet vulputate tristique quam felis. Id phasellus dui orci vulputate consequat nulla prain.</p>
+                    <img src={OmarSy} className="Omar-img" alt="logo"/>
+                </header>
+                <form>
+                    <section className="about">
+                        <h3>Add made movie</h3>
+                        <h5>Title</h5><Input type="text" className="title"/>
+                        <h5>Release date</h5><Input type="text"/>
+                        <h5>Description</h5><textarea></textarea>
+                        <h5>Image</h5><Input type="file"/><br/>
+                        <Button className='add'>Add</Button>
+                    </section>
+                    <section className="about">
+                        <h3>Add played movie</h3>
+                        <h5>Title</h5><Input type="text"/>
+                        <h5>Release date</h5><Input type="text"/>
+                        <h5>Description</h5><textarea></textarea>
+                        <h5>Image</h5><Input type="file"/><br/>
+                        <Button className='add'>Add</Button>
+                    </section>
+                </form>
+            </div>
         </section>
-    </div>
     );
 }
 
