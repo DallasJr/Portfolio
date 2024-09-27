@@ -46,6 +46,8 @@ func SetupRoutes() *gin.Engine {
 	admin.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
 	admin.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
 
+	admin.GET("/panel", controllers.GetPanel)
+
 	//////////////////////////////////
 
 	router.GET("/portfolio", controllers.GetPortfolio)

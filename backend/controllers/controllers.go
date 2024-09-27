@@ -90,6 +90,10 @@ func AdminLogout(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Logout successful"})
 }
 
+func GetPanel(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "OK"})
+}
+
 func GetPortfolio(c *gin.Context) {
 	var portfolio models.Portfolio
 	if err := config.DB.First(&portfolio).Error; err != nil {
