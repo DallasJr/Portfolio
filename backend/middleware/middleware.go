@@ -11,6 +11,7 @@ func AuthRequired() gin.HandlerFunc {
 		session := sessions.Default(c)
 		admin := session.Get("admin")
 		if admin == nil {
+			// Retourne "Unauthorized" s'il n'est pas admin
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
 			c.Abort()
 			return

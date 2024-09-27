@@ -7,6 +7,10 @@ function Filmographie() {
         <header class="header">
             <div class="profile">
             </div>
+            <div className="menu-container">
+            <ul className="menu">
+            </ul>
+            </div>
             <div class="intro">
                 <h2>Omar</h2>
                 <h2>Sy</h2>

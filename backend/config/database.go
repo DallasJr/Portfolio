@@ -17,11 +17,10 @@ func ConnectDatabase() {
 		log.Fatal("Failed to connect to the database!")
 	}
 	log.Println("Database connected successfully.")
-
+	// Créer les tables si non-existant
 	err = DB.AutoMigrate(&models.Portfolio{}, &models.MadeMovie{}, &models.PlayedMovie{}, &models.Admin{})
 	if err != nil {
 		return
 	}
-
 	fmt.Println("Database connection successful.")
 }
