@@ -1,5 +1,8 @@
 import OmarSy from './OmarSy.png';
 import {Button, Input} from "@mui/material";
+import './Admin.css';
+import React from 'react';
+
 
 
 function Filmographie() {
