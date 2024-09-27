@@ -17,17 +17,19 @@ var validate = validator.New()
 const defaultUsername = "admin"
 const defaultPassword = "admin"
 
+// Crypter le mot de passe
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	return string(bytes), err
 }
 
+// Vérifier un mot de passe crypté
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
 
-func InitializeAdmin(db *gorm.DB) {
+func InitializePortfolio(db *gorm.DB) {
 	fmt.Println("Creating admin login")
 	var admin models.Admin
 	db.First(&admin)
@@ -71,14 +73,20 @@ func AdminLogin(c *gin.Context) {
 	}
 	session := sessions.Default(c)
 	session.Set("admin", admin.Username)
-	session.Save()
+	err := session.Save()
+	if err != nil {
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
 }
 
 func AdminLogout(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Clear()
-	session.Save()
+	err := session.Save()
+	if err != nil {
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{"message": "Logout successful"})
 }
 

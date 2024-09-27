@@ -20,19 +20,21 @@ func SetupRoutes() *gin.Engine {
 	router.POST("/login", controllers.AdminLogin)
 	router.POST("/logout", controllers.AdminLogout)
 
+	// Accessible seulement par admin
 	admin := router.Group("/admin")
 	admin.Use(middleware.AuthRequired())
-	{
-		admin.PUT("/portfolio", controllers.UpdatePortfolio)
 
-		admin.POST("/made-movies", controllers.CreateMadeMovie)
-		admin.PUT("/made-movies/:id", controllers.UpdateMadeMovie)
-		admin.DELETE("/made-movies/:id", controllers.DeleteMadeMovie)
+	admin.PUT("/portfolio", controllers.UpdatePortfolio)
 
-		admin.POST("/played-movies", controllers.CreatePlayedMovie)
-		admin.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
-		admin.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
-	}
+	admin.POST("/made-movies", controllers.CreateMadeMovie)
+	admin.PUT("/made-movies/:id", controllers.UpdateMadeMovie)
+	admin.DELETE("/made-movies/:id", controllers.DeleteMadeMovie)
+
+	admin.POST("/played-movies", controllers.CreatePlayedMovie)
+	admin.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
+	admin.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
+	//////////////////////////////////
+
 	router.GET("/portfolio", controllers.GetPortfolio)
 	router.GET("/made-movies", controllers.GetMadeMovies)
 	router.GET("/played-movies", controllers.GetPlayedMovies)

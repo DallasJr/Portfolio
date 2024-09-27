@@ -8,7 +8,7 @@ import (
 
 func main() {
 	config.ConnectDatabase()
-	controllers.InitializeAdmin(config.DB)
+	controllers.InitializePortfolio(config.DB)
 	r := routes.SetupRoutes()
 	err := r.Run(":8080")
 	if err != nil {
