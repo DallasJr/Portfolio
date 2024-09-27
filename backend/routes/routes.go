@@ -1,17 +1,29 @@
 package routes
 
 import (
+	"portfolio/config"
+	"portfolio/controllers"
+	"portfolio/middleware"
+	"time"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"portfolio/config"
-	"portfolio/controllers"
-	"portfolio/middleware"
 )
 
 func SetupRoutes() *gin.Engine {
 	router := gin.Default()
+
+	// Configurer les paramètres CORS
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"}, // Origine autorisée
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 
 	store := cookie.NewStore([]byte("secret"))
 	router.Use(sessions.Sessions("mysession", store))
@@ -33,6 +45,7 @@ func SetupRoutes() *gin.Engine {
 	admin.POST("/played-movies", controllers.CreatePlayedMovie)
 	admin.PUT("/played-movies/:id", controllers.UpdatePlayedMovie)
 	admin.DELETE("/played-movies/:id", controllers.DeletePlayedMovie)
+
 	//////////////////////////////////
 
 	router.GET("/portfolio", controllers.GetPortfolio)
