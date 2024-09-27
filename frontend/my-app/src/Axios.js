@@ -22,16 +22,6 @@ export const getActedMovies = async () => {
     }
 };
 
-export const getRecordedMovies = async () => {
-    try {
-        const response = await axios.get(`${BASE_URL}/recorded-movies`);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching recorded movies", error);
-        throw error;
-    }
-};
-
 export const addMovie = async (movie) => {
     try {
         await axios.post(`${BASE_URL}/add-movie`, movie);

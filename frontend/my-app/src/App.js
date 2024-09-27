@@ -73,23 +73,15 @@ function App() {
 
     return (
         <div>
-            {location.pathname !== '/FilmographieAct' && location.pathname !== '/FilmographieRea' && location.pathname !== '/Admin' && location.pathname !== '/Login' &&
-                <AppContent/>}
-
+            {location.pathname !== '/FilmographieAct' && location.pathname !== '/FilmographieRea' && location.pathname !== '/Admin' && location.pathname !== '/Login' && <AppContent />}
             <Routes>
-                <Route path="/FilmographieAct" element={<FilmographieAct/>}/>
-                <Route path="/FilmographieRea" element={<FilmographieRea/>}/>
-                <Route path="/Admin" element={<Admin/>}/>
+                <Route path="/FilmographieAct" element={<FilmographieAct />} />
+                <Route path="/FilmographieRea" element={<FilmographieRea />} />
+                <Route path="/Admin" element={<Admin />} />
                 <Route path="/Login" element={<Login/>}/>
             </Routes>
         </div>
     );
 }
 
-export default function Main() {
-    return (
-        <Router>
-            <App/>
-        </Router>
-    );
-}
+export default App;

@@ -1,9 +1,12 @@
 import './FilmographieAct.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OmarSy from './OmarSy.png';
 import React, { useEffect, useState } from 'react';
-import { getMadeMovies } from './Axios';
+import { getActedMovies } from './Axios';
+import { Button } from "@mui/material";
 
-function Filmographie() {
+function FilmographieContent() {
+    const navigate = useNavigate();
     const [madeMovies, setMadeMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +15,7 @@ function Filmographie() {
         const fetchMovies = async () => {
             setLoading(true);
             try {
-                const data = await getMadeMovies();
+                const data = await getActedMovies();
                 console.log("Movies from API:", data);
                 setMadeMovies(data);
             } catch (err) {
@@ -21,21 +24,40 @@ function Filmographie() {
             } finally {
                 setLoading(false);
             }
-        };        
+        };
         fetchMovies();
     }, []);
-    
 
     return (
         <div className="container">
-            <header className="header">
-                <div className="profile">
+            <form>
+                <div className="menu-container">
+                    <ul className="menu">
+                        <li>
+                            <Button variant="outlined" onClick={() => navigate('/')} className="App-link">
+                                Accueil
+                            </Button>
+                        </li>
+                        <li>
+                            <Button variant="outlined" onClick={() => navigate('/FilmographieRea')} className="App-link">
+                                Voir la Filmographie (Réalisateur)
+                            </Button>
+                        </li>
+                        <li>
+                            <Button variant="outlined" onClick={() => navigate('/Admin')} className="App-link">
+                                Admin
+                            </Button>
+                        </li>
+                    </ul>
                 </div>
+            </form>
+            <header className="header">
+                <div className="profile"></div>
                 <div className="intro">
                     <h2>Omar</h2>
                     <h2>Sy</h2>
                 </div>
-                <img src={OmarSy} className="Omar-img" alt="logo" />
+                <img src={OmarSy} className="Omar-img" alt="Omar Sy" />
             </header>
 
             <section className="about">
@@ -60,11 +82,18 @@ function Filmographie() {
                 ) : (
                     !loading && <p>No movies found.</p>
                 )}
-
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet vulputate tristique quam felis. Id phasellus dui orci vulputate consequat nulla prain.</p>
             </section>
         </div>
     );
 }
 
-export default Filmographie;
+export default function Filmographie() {
+    const location = useLocation();
+
+    return (
+        <div>
+            {location.pathname !== '/FilmographieRea' && location.pathname !== '/Admin' && <FilmographieContent />}
+        </div>
+    );
+}
