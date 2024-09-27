@@ -5,6 +5,7 @@ import FilmographieAct from './FilmographieAct';
 import FilmographieRea from './FilmographieRea';
 import Admin from './Admin';
 import {Button} from "@mui/material";
+import Login from "./Login";
 
 function AppContent() {
     const navigate = useNavigate();
@@ -55,7 +56,7 @@ function AppContent() {
                         target of wordplay
                         and photo montages, which are in poor taste and far from humorous.
                     </p>
-                    <img src="/omarscie.png" className="omarscie" />
+                    <img src="/omarscie.png" className="omarscie"/>
                 </div>
                 <div className="omarsy">
                     <img src="/omarSY.png" className="App-logo" alt="omar si"/>
@@ -72,13 +73,14 @@ function App() {
 
     return (
         <div>
-            {location.pathname !== '/FilmographieAct' && location.pathname !== '/FilmographieRea' && location.pathname !== '/Admin' &&
+            {location.pathname !== '/FilmographieAct' && location.pathname !== '/FilmographieRea' && location.pathname !== '/Admin' && location.pathname !== '/Login' &&
                 <AppContent/>}
 
             <Routes>
                 <Route path="/FilmographieAct" element={<FilmographieAct/>}/>
                 <Route path="/FilmographieRea" element={<FilmographieRea/>}/>
                 <Route path="/Admin" element={<Admin/>}/>
+                <Route path="/Login" element={<Login/>}/>
             </Routes>
         </div>
     );

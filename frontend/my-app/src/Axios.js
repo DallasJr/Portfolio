@@ -61,3 +61,13 @@ export const deleteMovie = async (id) => {
         throw error;
     }
 };
+
+export const login = async (user, pwd) => {
+    try {
+        await axios.post(`${BASE_URL}/login`, user, pwd);
+        console.log("Login Successfully");
+    } catch (error) {
+        console.error("Error login", error);
+        throw error;
+    }
+}
